@@ -16,4 +16,25 @@ public class Main {
         //Write your code here!
     }
 
+    public static List<List<String>> readFile () {
+        List<List<String>> lines = new ArrayList<>();
+        try {
+            File file = new File("data.csv");
+            if (file.exists()) {
+                Scanner scanner = new Scanner(file);
+                while (scanner.hasNextLine()) {
+                    String line = scanner.nextLine();
+                    String[] tokens = line.split(",");
+                    List<String> tokensList = new ArrayList<>(Arrays.asList(tokens));
+                    lines.add(tokensList);
+                }
+
+            }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        return lines;
+    }
+
+
 }
